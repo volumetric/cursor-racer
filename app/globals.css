@@ -25,3 +25,30 @@ body {
     text-wrap: balance;
   }
 }
+
+.pixel-art {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.pixel-text {
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.pixel-button {
+  font-family: 'Press Start 2P', cursive;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border: 4px solid #fff;
+  box-shadow: 4px 4px 0 #000;
+}
+
+@keyframes road-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100px; }
+}
+
+.animate-road-move {
+  animation: road-move 1s linear infinite;
+}

@@ -12,8 +12,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      animation: {
+        'road-move': 'road-move 1s linear infinite',
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
