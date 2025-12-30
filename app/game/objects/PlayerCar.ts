@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import * as Phaser from 'phaser';
 import { GAME_CONFIG } from '../constants/GameConfig';
 
 export class PlayerCar extends Phaser.Physics.Arcade.Sprite {

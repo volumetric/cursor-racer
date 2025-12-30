@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import * as Phaser from 'phaser';
 import { PlayerCar } from '../objects/PlayerCar';
 import { EnemyCar } from '../objects/EnemyCar';
 import { FuelPickup } from '../objects/FuelPickup';

@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import * as Phaser from 'phaser';
 import { EnemyCar } from '../objects/EnemyCar';
 import { GAME_CONFIG } from '../constants/GameConfig';
 
