@@ -446,12 +446,14 @@ export class GameScene extends Phaser.Scene {
 
   private updateScrolling(delta: number): void {
     // Scroll speed based on player speed (km/h to pixels/s)
-    const scrollSpeed = this.speed * 0.28;
+    // Increased multiplier from 0.28 to 0.8 to make it feel faster
+    const scrollSpeed = this.speed * 2;
     const scrollAmount = scrollSpeed * (delta / 1000);
     
-    this.road.tilePositionY += scrollAmount;
-    this.leftGrass.tilePositionY += scrollAmount;
-    this.rightGrass.tilePositionY += scrollAmount;
+    // Invert direction: decrease tilePositionY to move texture "down"
+    this.road.tilePositionY -= scrollAmount;
+    this.leftGrass.tilePositionY -= scrollAmount;
+    this.rightGrass.tilePositionY -= scrollAmount;
   }
 
   private updateFuelPickups(delta: number): void {
