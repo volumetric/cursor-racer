@@ -29,8 +29,8 @@ export default function PhaserGame() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
-      <div ref={parentRef} id="game-container" className="relative" />
+    <div className="flex flex-col items-center justify-center h-screen w-screen bg-gray-900 overflow-hidden">
+      <div ref={parentRef} id="game-container" className="w-full h-full relative" />
     </div>
   );
 }

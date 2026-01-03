@@ -14,22 +14,9 @@ export class PlayerCar extends Phaser.Physics.Arcade.Sprite {
 
     // Physics setup
     this.setOrigin(0.5, 0.5);
+    // this.setOrigin(2, 2);
     this.setSize(GAME_CONFIG.PLAYER_CAR_WIDTH, GAME_CONFIG.PLAYER_CAR_HEIGHT);
     this.setDisplaySize(GAME_CONFIG.PLAYER_CAR_WIDTH, GAME_CONFIG.PLAYER_CAR_HEIGHT);
-
-    // Create texture if it doesn't exist
-    this.createTexture();
-  }
-
-  private createTexture(): void {
-    if (!this.scene.textures.exists('player-car')) {
-      const graphics = this.scene.make.graphics({ x: 0, y: 0 });
-      graphics.fillStyle(GAME_CONFIG.COLORS.PLAYER_CAR, 1);
-      graphics.fillRect(0, 0, GAME_CONFIG.PLAYER_CAR_WIDTH, GAME_CONFIG.PLAYER_CAR_HEIGHT);
-      graphics.generateTexture('player-car', GAME_CONFIG.PLAYER_CAR_WIDTH, GAME_CONFIG.PLAYER_CAR_HEIGHT);
-      graphics.destroy();
-    }
-    this.setTexture('player-car');
   }
 
   applyPush(direction: number): void {

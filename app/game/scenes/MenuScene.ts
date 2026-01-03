@@ -3,6 +3,8 @@ import { GAME_CONFIG } from '../constants/GameConfig';
 
 export class MenuScene extends Phaser.Scene {
   private road!: Phaser.GameObjects.TileSprite;
+  private leftGrass!: Phaser.GameObjects.TileSprite;
+  private rightGrass!: Phaser.GameObjects.TileSprite;
   private spaceKey!: Phaser.Input.Keyboard.Key;
 
   constructor() {
@@ -68,7 +70,9 @@ export class MenuScene extends Phaser.Scene {
 
   update(): void {
     // Scroll road
-    this.road.tilePositionY -= 2;
+    this.road.tilePositionY += 2;
+    this.leftGrass.tilePositionY += 2;
+    this.rightGrass.tilePositionY += 2;
 
     // Check for space key
     if (this.spaceKey && Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
@@ -80,13 +84,31 @@ export class MenuScene extends Phaser.Scene {
     const width = GAME_CONFIG.WIDTH;
     const height = GAME_CONFIG.HEIGHT;
 
+    // Create left grass
+    this.leftGrass = this.add.tileSprite(
+      100,
+      height / 2,
+      200,
+      height,
+      'left-grass'
+    );
+
+    // Create right grass
+    this.rightGrass = this.add.tileSprite(
+      700,
+      height / 2,
+      200,
+      height,
+      'right-grass'
+    );
+
     // Create road texture
     if (!this.textures.exists('road-tile')) {
       const graphics = this.make.graphics({ x: 0, y: 0 });
 
       // Road
       graphics.fillStyle(GAME_CONFIG.COLORS.ROAD, 1);
-      graphics.fillRect(0, 0, GAME_CONFIG.ROAD_WIDTH, 100);
+      graphics.fillRect(1, 0, GAME_CONFIG.ROAD_WIDTH, 100);
 
       // Lane markers
       graphics.fillStyle(GAME_CONFIG.COLORS.LANE_MARK, 1);

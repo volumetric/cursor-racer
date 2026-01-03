@@ -8,6 +8,8 @@ import { GAME_CONFIG } from '../constants/GameConfig';
 export class GameScene extends Phaser.Scene {
   // Game objects
   private road!: Phaser.GameObjects.TileSprite;
+  private leftGrass!: Phaser.GameObjects.TileSprite;
+  private rightGrass!: Phaser.GameObjects.TileSprite;
   private player!: PlayerCar;
   private trafficManager!: TrafficManager;
   private fuelPickups!: Phaser.Physics.Arcade.Group;
@@ -110,6 +112,24 @@ export class GameScene extends Phaser.Scene {
   private createRoad(): void {
     const width = GAME_CONFIG.WIDTH;
     const height = GAME_CONFIG.HEIGHT;
+
+    // Create left grass
+    this.leftGrass = this.add.tileSprite(
+      100,
+      height / 2,
+      200,
+      height,
+      'left-grass'
+    );
+
+    // Create right grass
+    this.rightGrass = this.add.tileSprite(
+      700,
+      height / 2,
+      200,
+      height,
+      'right-grass'
+    );
 
     // Create road texture if not exists
     if (!this.textures.exists('road-tile')) {
@@ -427,7 +447,11 @@ export class GameScene extends Phaser.Scene {
   private updateScrolling(delta: number): void {
     // Scroll speed based on player speed (km/h to pixels/s)
     const scrollSpeed = this.speed * 0.28;
-    this.road.tilePositionY += scrollSpeed * (delta / 1000);
+    const scrollAmount = scrollSpeed * (delta / 1000);
+    
+    this.road.tilePositionY += scrollAmount;
+    this.leftGrass.tilePositionY += scrollAmount;
+    this.rightGrass.tilePositionY += scrollAmount;
   }
 
   private updateFuelPickups(delta: number): void {
