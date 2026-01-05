@@ -9,7 +9,7 @@ const pressStart2P = Press_Start_2P({
 })
 
 export const metadata: Metadata = {
-  title: "Cursor Race",
+  title: "Cursor Racer",
   description: "A retro-style racing game",
 };
 
