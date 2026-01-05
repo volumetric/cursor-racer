@@ -41,8 +41,10 @@ export class TrafficManager {
     // Random lane
     const lane = Phaser.Utils.Array.GetRandom(GAME_CONFIG.LANE_POSITIONS);
 
-    // Spawn above screen
+    // Spawn above screen (ahead of player)
     const enemy = new EnemyCar(this.scene, lane, -100);
+    // We want them to drive "towards" us if we are faster, so spawn at top
+    // const enemy = new EnemyCar(this.scene, lane, -150);
     this.enemies.add(enemy);
 
     // Restart spawn timer

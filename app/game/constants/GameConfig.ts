@@ -11,9 +11,9 @@ export const GAME_CONFIG = {
   PLAYER_CAR_WIDTH: 40,
   PLAYER_CAR_HEIGHT: 60,
   MAX_SPEED: 250, // km/h
-  ACCELERATION: 2, // km/h per frame
-  BRAKING: 4, // km/h per frame
-  AUTO_DECELERATION: 1, // km/h per frame
+  ACCELERATION: 10, // km/h per frame
+  BRAKING: 10, // km/h per frame
+  AUTO_DECELERATION: 5, // km/h per frame
 
   // Lives and fuel
   INITIAL_LIVES: 3,
@@ -36,6 +36,7 @@ export const GAME_CONFIG = {
   ROAD_LEFT_BOUND: 200,
   ROAD_RIGHT_BOUND: 600,
   LANE_POSITIONS: [300, 400, 500], // X positions for 3 lanes
+  SCROLL_SPEED_FACTOR: 2, // Multiplier for speed to pixels conversion
 
   // Collision
   COLLISION_PUSH_FORCE: 300,

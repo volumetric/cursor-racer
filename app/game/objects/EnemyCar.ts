@@ -38,12 +38,13 @@ export class EnemyCar extends Phaser.Physics.Arcade.Sprite {
   }
 
   updateMovement(playerSpeed: number, delta: number): void {
-    // Calculate relative speed (difference between enemy and player)
-    const relativeSpeed = (this.enemySpeed - playerSpeed);
+    // Calculate relative speed (how much faster player is than enemy)
+    // If player is faster (200) vs enemy (100): Result +100. Movement positive (Down). WE OVERTAKE.
+    // If player is slower (0) vs enemy (100): Result -100. Movement negative (Up). ENEMY DRIVES AWAY.
+    const relativeSpeed = (playerSpeed - this.enemySpeed);
 
-    // Convert km/h to pixels per second, then apply delta
-    // Formula: (km/h * 1000m/km * 1hr/3600s) / 3.6 = m/s = pixels/s (approx)
-    const pixelsPerSecond = relativeSpeed * 0.28;
+    // Convert km/h to pixels per second using shared factor
+    const pixelsPerSecond = relativeSpeed * GAME_CONFIG.SCROLL_SPEED_FACTOR;
     const movement = pixelsPerSecond * (delta / 1000);
 
     this.y += movement;

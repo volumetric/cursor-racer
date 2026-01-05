@@ -446,8 +446,7 @@ export class GameScene extends Phaser.Scene {
 
   private updateScrolling(delta: number): void {
     // Scroll speed based on player speed (km/h to pixels/s)
-    // Increased multiplier from 0.28 to 0.8 to make it feel faster
-    const scrollSpeed = this.speed * 2;
+    const scrollSpeed = this.speed * GAME_CONFIG.SCROLL_SPEED_FACTOR;
     const scrollAmount = scrollSpeed * (delta / 1000);
     
     // Invert direction: decrease tilePositionY to move texture "down"
@@ -457,7 +456,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private updateFuelPickups(delta: number): void {
-    const scrollSpeed = this.speed * 0.28;
+    const scrollSpeed = this.speed * GAME_CONFIG.SCROLL_SPEED_FACTOR;
     const children = this.fuelPickups.getChildren() as FuelPickup[];
 
     children.forEach((pickup: FuelPickup) => {

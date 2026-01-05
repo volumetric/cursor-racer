@@ -46,6 +46,9 @@ export class FuelPickup extends Phaser.Physics.Arcade.Sprite {
   }
 
   updateMovement(scrollSpeed: number, delta: number): void {
+    // Fuel cans are stationary (0 km/h)
+    // So they should move down at the speed of the player
+    // If player is moving (speed > 0), scrollSpeed is positive, y increases (moves down).
     this.y += scrollSpeed * (delta / 1000);
   }
 
