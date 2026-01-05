@@ -45,6 +45,20 @@ export class GameScene extends Phaser.Scene {
     super({ key: 'GameScene' });
   }
 
+  init(): void {
+    // Reset game state
+    this.speed = 0;
+    this.fuel = GAME_CONFIG.INITIAL_FUEL;
+    this.lives = GAME_CONFIG.INITIAL_LIVES;
+    this.score = 0;
+    this.distance = 0;
+    this.fuelPickupsPlaced = 0;
+    this.moveLeft = false;
+    this.moveRight = false;
+    this.accelerate = false;
+    this.brake = false;
+  }
+
   create(): void {
     // Detect mobile
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -71,6 +85,21 @@ export class GameScene extends Phaser.Scene {
 
     // Start placing fuel pickups
     this.startFuelPickupPlacement();
+
+    // Listen for shutdown to clean up
+    this.events.on('shutdown', this.shutdown, this);
+  }
+
+  private shutdown(): void {
+    // Stop all timers
+    if (this.fuelPickupTimer) {
+      this.fuelPickupTimer.remove();
+    }
+    
+    // Stop traffic manager spawning
+    if (this.trafficManager) {
+      this.trafficManager.stopSpawning();
+    }
   }
 
   update(time: number, delta: number): void {
