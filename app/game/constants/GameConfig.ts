@@ -22,6 +22,10 @@ export const GAME_CONFIG = {
   FUEL_PICKUP_VALUE: 10, // fuel per pickup
   TOTAL_FUEL_PICKUPS: 5,
 
+  //Fuel pickup
+  FUEL_PICKUP_WIDTH: 40,
+  FUEL_PICKUP_HEIGHT: 60,
+
   // Enemy cars
   ENEMY_CAR_WIDTH: 40,
   ENEMY_CAR_HEIGHT: 60,
@@ -36,7 +40,7 @@ export const GAME_CONFIG = {
   ROAD_LEFT_BOUND: 200,
   ROAD_RIGHT_BOUND: 600,
   LANE_POSITIONS: [300, 400, 500], // X positions for 3 lanes
-  SCROLL_SPEED_FACTOR: 2, // Multiplier for speed to pixels conversion
+  SCROLL_SPEED_FACTOR: 4, // Multiplier for speed to pixels conversion
 
   // Collision
   COLLISION_PUSH_FORCE: 300,

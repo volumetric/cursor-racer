@@ -6,7 +6,8 @@ export class EnemyCar extends Phaser.Physics.Arcade.Sprite {
   private hasBeenPassed: boolean = false;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y, 'enemy-car');
+    // Start with a valid default texture
+    super(scene, x, y, 'enemy-car-yellow');
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -18,23 +19,17 @@ export class EnemyCar extends Phaser.Physics.Arcade.Sprite {
     // Random speed for this car
     this.enemySpeed = Phaser.Math.Between(GAME_CONFIG.ENEMY_SPEED_MIN, GAME_CONFIG.ENEMY_SPEED_MAX);
 
-    // Create texture with random color
-    this.createTexture();
+    // Assign random car texture
+    this.assignRandomTexture();
   }
 
-  private createTexture(): void {
-    const color = Phaser.Utils.Array.GetRandom(GAME_CONFIG.COLORS.ENEMY_CARS);
-    const key = `enemy-car-${color}`;
-
-    if (!this.scene.textures.exists(key)) {
-      const graphics = this.scene.make.graphics({ x: 0, y: 0 });
-      graphics.fillStyle(color, 1);
-      graphics.fillRect(0, 0, GAME_CONFIG.ENEMY_CAR_WIDTH, GAME_CONFIG.ENEMY_CAR_HEIGHT);
-      graphics.generateTexture(key, GAME_CONFIG.ENEMY_CAR_WIDTH, GAME_CONFIG.ENEMY_CAR_HEIGHT);
-      graphics.destroy();
-    }
-
-    this.setTexture(key);
+  private assignRandomTexture(): void {
+    const types = ['enemy-car-blue', 'enemy-car-red', 'enemy-car-yellow'];
+    const randomType = Phaser.Utils.Array.GetRandom(types);
+    this.setTexture(randomType);
+    
+    // Reset size to config dimensions after changing texture
+    this.setDisplaySize(GAME_CONFIG.ENEMY_CAR_WIDTH, GAME_CONFIG.ENEMY_CAR_HEIGHT);
   }
 
   updateMovement(playerSpeed: number, delta: number): void {
